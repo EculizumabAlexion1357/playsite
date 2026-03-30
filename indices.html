@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Indices | Kidney Donor Prediabetes Risk</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="site.js"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="title">Living Kidney Donor Prediabetes Risk Platform</div>
+        <div class="sub">Indices calculated by the OGTT-DM risk stratifier tool</div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="stepwise.html">Stepwise Approach</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="indices.html">Indices</a>
+        <a href="considerations.html">Important Considerations</a>
+        <a href="references.html">References</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Indices Calculated by the OGTT-DM Risk Stratifier Tool</h1>
+
+    <div class="card">
+      <p class="muted">
+        Abbreviations: OGTT = oral glucose tolerance test; G₀, G₃₀, G₆₀, G₁₂₀ = glucose at fasting, 30 min, 60 min, and 120 min;
+        I₀, I₃₀ = insulin at fasting and 30 min. Gmean = mean of 0, 30, 60, 90, and 120 min glucose values; Imean = mean of 0, 30, 60, 90,
+        and 120 min insulin values. Glucose values are in mg/dL and insulin in mU/L, except for the Stumvoll equation, which uses insulin in
+        pmol/L and glucose in mmol/L (conversion: insulin [mU/L] × 6; glucose [mg/dL] ÷ 18).
+      </p>
+
+      <div class="hr"></div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn" onclick="toggleAllAccordions(true)">Open all</button>
+        <button class="btn" onclick="toggleAllAccordions(false)">Close all</button>
+      </div>
+    </div>
+
+    <details class="accordion">
+      <summary>1. Matsuda Index (Insulin Sensitivity Index, ISI)</summary>
+      <div class="hr"></div>
+      <div class="formula">ISI = 10,000 / √[(G₀ × I₀) × (Gmean × Imean)]</div>
+      <p>
+        HOMA-IR correlates well with basal hepatic insulin resistance (higher HOMA-IR indicating greater hepatic resistance),
+        but correlates poorly with peripheral resistance as measured by total glucose disposal during the hyperinsulinemic–euglycemic clamp.
+        In contrast, the Matsuda index correlates well with total glucose disposal (lower Matsuda values indicating greater peripheral insulin resistance),
+        but correlates poorly with basal hepatic insulin resistance.<sup><a href="references.html#ref7">7</a></sup>
+      </p>
+    </details>
+
+    <details class="accordion">
+      <summary>2. Insulinogenic Index (IGI)</summary>
+      <div class="hr"></div>
+      <div class="formula">IGI = (I₃₀ – I₀) / (G₃₀ – G₀)</div>
+      <p>
+        Estimates early-phase insulin secretion (β-cell function) in response to an oral glucose challenge.
+        In SAHS, among individuals with normal glucose tolerance (NGT), those in the 10th percentile of IGI had a 7.69-fold higher risk of type 2 diabetes
+        compared with those in the 90th percentile; risk was even greater in IGT (OR ≈20).<sup><a href="references.html#ref8">8</a></sup>
+      </p>
+    </details>
+
+    <details class="accordion">
+      <summary>3. Disposition Index (DI)</summary>
+      <div class="hr"></div>
+      <div class="formula">DI = Matsuda Index × IGI</div>
+      <p>
+        Reflects β-cell secretory capacity in the context of insulin sensitivity/resistance. In SAHS, a DI &lt; 3.1 had sensitivity 83% and specificity 77%
+        for predicting type 2 diabetes after 7–8 years of follow-up.<sup><a href="references.html#ref9">9</a></sup>
+      </p>
+    </details>
+
+    <details class="accordion">
+      <summary>4. Homeostatic Model Assessment of Insulin Resistance (HOMA-IR)</summary>
+      <div class="hr"></div>
+      <div class="formula">HOMA-IR = (G₀ × I₀) / 405</div>
+      <p>
+        Correlates well with basal hepatic insulin resistance (higher HOMA-IR indicating greater hepatic resistance), but correlates poorly with peripheral resistance
+        as measured by total glucose disposal during the hyperinsulinemic–euglycemic clamp. The Matsuda index provides a complementary estimate that better reflects
+        peripheral insulin sensitivity.<sup><a href="references.html#ref7">7</a></sup>
+      </p>
+    </details>
+
+    <details class="accordion">
+      <summary>5. PG AUC (Weighted) — Weighted Plasma Glucose Area Under the Curve</summary>
+      <div class="hr"></div>
+      <div class="formula">PG AUC = (PG₀ + 2×PG₃₀ + 3×PG₆₀ + 2×PG₁₂₀) / 4</div>
+      <p>
+        Approximates integrated glucose exposure during OGTT using a weighted mean of glucose at 0, 30, 60, and 120 minutes.
+        In one study, a glucose AUC cutoff of 290 mg·h/dL showed high discrimination for identifying IFG, IGT, and diabetes (ROC AUC 0.96; sensitivity 90%; specificity 93%).<sup><a href="references.html#ref10">10</a></sup>
+      </p>
+      <p class="muted">
+        Although PG AUC is not incorporated into the risk-stratifier algorithm, it may provide supplementary information when interpreting OGTT-based diabetes risk.
+      </p>
+    </details>
+
+    <details class="accordion">
+      <summary>6. Stumvoll First-Phase Insulin Release Index (Stumvoll 1st-phase)</summary>
+      <div class="hr"></div>
+      <div class="formula">Stumvoll 1st-phase = 1283 + (1.829 × I₃₀) − (138.7 × G₃₀) + (3.772 × I₀)</div>
+      <p class="muted">
+        Requires unit conversion: insulin in pmol/L and glucose in mmol/L (insulin [mU/L] × 6; glucose [mg/dL] ÷ 18).
+      </p>
+      <p>
+        Stumvoll-derived first-phase insulin secretion correlates more strongly with clamp-derived measures of insulin secretion than IGI.<sup><a href="references.html#ref11">11</a></sup>
+        No validated cutoff has been established to define increased future diabetes risk, and OGTT-derived first-phase insulin secretion should be interpreted cautiously.
+        In the original validation study, limits of agreement between OGTT-derived and clamp-measured first-phase insulin secretion (mean ±2 SD) spanned approximately −600 to +600 pmol/L.
+        The cutoff used in our risk stratifier is empiric and corresponds to the 25th percentile derived from analysis of 117 donor OGTTs at our center.
+      </p>
+    </details>
+
+    <div class="footer">
+      © <span id="y"></span> Katafan Achkar, MD, FASN
+      <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+    </div>
+  </main>
+</body>
+</html>
