@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
-  <title>OGTT–DM Risk Stratifier (Fresh)</title>
-  <script defer src="calculator.js"></script>
+  <meta name="robots" content="index, follow" />
+  <title>Kidney Donor Prediabetes OGTT Calculator | Living Kidney Donor Prediabetes Risk Platform</title>
+  <script defer src="calculator.js?v=101"></script>
   <style>
     :root{
       --bg:#f6f8fc;
@@ -110,12 +110,10 @@
     .grid3{display:grid; grid-template-columns:repeat(3, minmax(140px,1fr)); gap:12px}
     @media (max-width: 640px){ .grid2,.grid3{grid-template-columns:1fr;} }
 
-    /* OGTT time-point grids (2 vertical columns: Glucose + Insulin) */
-    .ogttCol{max-width:200px; display:flex; flex-direction:column}
+    .ogttCol{max-width:none; display:flex; flex-direction:column}
     .ogttGrid{display:grid; grid-template-columns:1fr; gap:10px; justify-items:start}
     .tp{display:flex; flex-direction:column}
     .tplabel{font-size:11px; color:var(--muted); margin-bottom:4px}
-    /* compact OGTT entry boxes (still fits 5 digits) */
     .ogttGrid input{padding:8px 6px; font-size:14px; text-align:center; width:100%; max-width:130px}
     .ogttCol .hint{max-width:100%; width:100%; overflow-wrap:anywhere; word-break:break-word; white-space:normal; padding:0 2px; margin-top:6px}
 
@@ -158,11 +156,9 @@
     .badge.warn{border-color:rgba(247,185,85,.4); background:rgba(247,185,85,.10); color:var(--warn); font-weight:700}
     .badge.bad{border-color:rgba(255,107,107,.4); background:rgba(255,107,107,.10); color:var(--bad); font-weight:800}
 
-    /* BMI badge formatting */
     #bmiBadge{letter-spacing:.1px}
     #bmiBadge .bmiNum{font-family:var(--mono); font-variant-numeric: tabular-nums; font-size:14px; padding-left:4px;}
     #bmiBadge .bmiUnit{opacity:.9; font-weight:700}
-
 
     .stepTitle{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
     .stepTitle h3{margin:0; font-size:14px}
@@ -201,9 +197,7 @@
       input,select{border:1px solid #bbb; color:#000; background:#fff}
       .summary{color:#000}
     }
-  
 
-    /* v5.0 fixes */
     .hint{max-width:100%; overflow-wrap:anywhere; word-break:break-word;}
     .footerNote{max-width:100%; overflow-wrap:anywhere;}
     @media print{
@@ -211,9 +205,7 @@
       .summary{max-height:none !important; overflow:visible !important;}
     }
 
-  
-    /* --- v5.1 additions: patient identifiers + BMI row width --- */
-    .bmiRow{grid-template-columns:repeat(3, minmax(200px, 1fr)); gap:12px}
+    .bmiRow{grid-template-columns:repeat(3, minmax(140px, 1fr)); gap:12px}
     @media (max-width: 980px){ .bmiRow{grid-template-columns:1fr;} }
 
     .ptCard summary{cursor:pointer; font-weight:700; list-style:none;}
@@ -236,12 +228,106 @@
       .ptCard{display:none !important;}
     }
 
-  
-    /* UI fix: keep long conversion hint inside its container */
     .ogttCol .hint{padding-left:0 !important; padding-right:0 !important; margin-left:0 !important;}
     .hint{max-width:100%; box-sizing:border-box;}
 
+    .chartWrap{
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(15,23,42,.02);
+      padding:12px;
+    }
+    .chartMeta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+    .chartLegend{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .legendItem{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .legendSwatch{
+      width:22px;
+      height:0;
+      border-top:3px solid var(--text);
+      display:inline-block;
+    }
+    .legendSwatch.dashed{ border-top-style:dashed; }
+    .ogttSvg{
+      width:100%;
+      height:auto;
+      display:block;
+      overflow:visible;
+    }
+    .chartEmpty{
+      font-size:12px;
+      color:var(--muted);
+      padding:12px 0 2px;
+    }
   </style>
+
+  <meta name="description" content="Enter OGTT glucose and insulin timepoints to compute indices (IGI, Matsuda, DI, HOMA-IR) and generate a clinician-facing summary for living kidney donor prediabetes risk counseling." />
+  <link rel="canonical" href="https://YOUR-DOMAIN-OR-GITHUB-PAGES-URL/calculator.html" />
+  <meta property="og:title" content="Living Kidney Donor Prediabetes Risk Platform" />
+  <meta property="og:description" content="OGTT-based risk assessment and counseling support for living kidney donor candidates with prediabetes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://YOUR-DOMAIN-OR-GITHUB-PAGES-URL/calculator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Living Kidney Donor Prediabetes Risk Platform" />
+  <meta name="twitter:description" content="OGTT-based risk assessment and counseling support for living kidney donor candidates with prediabetes." />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Living Kidney Donor Prediabetes Risk Platform",
+  "url": "https://YOUR-DOMAIN-OR-GITHUB-PAGES-URL/calculator.html",
+  "description": "Clinical decision-support platform for risk stratification and counseling of living kidney donor candidates with prediabetes using OGTT-derived indices and ATP III metabolic syndrome criteria.",
+  "about": [
+    {
+      "@type": "MedicalCondition",
+      "name": "Prediabetes"
+    },
+    {
+      "@type": "MedicalCondition",
+      "name": "Type 2 diabetes mellitus"
+    },
+    {
+      "@type": "MedicalCondition",
+      "name": "Chronic kidney disease"
+    }
+  ],
+  "medicalAudience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Physician"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Katafan Achkar, MD, FASN",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Houston Methodist Hospital"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Houston Methodist Hospital"
+  },
+  "isAccessibleForFree": true
+}
+</script>
 </head>
 <body>
 
@@ -261,9 +347,7 @@
     </div>
   </div>
 
-
   <div class="wrap">
-
     <header>
       <div class="title">
         <h1>OGTT–DM Risk Stratifier</h1>
@@ -285,11 +369,12 @@
             <option value="SI">SI (mmol/L, pmol/L, kg/cm)</option>
           </select>
         </span>
-        <button class="btn" type="button" id="downloadCsv">Download Excel (CSV)</button>
-          <button class="btn" id="copySummary">Copy summary</button>
+        <button class="btn" type="button" id="downloadCsv" onclick="window.exportCsvAll && window.exportCsvAll()">Download Excel (CSV)</button>
+        <span id="csvStatus" class="small muted" style="margin-left:10px;"></span>
+        <button class="btn" id="copySummary">Copy summary</button>
         <button class="btn" id="print">Print</button>
         <button class="btn" id="exportPdf">Export PDF</button>
-<button class="btn" id="clear">Clear</button>
+        <button class="btn" id="clear">Clear</button>
       </div>
     </header>
 
@@ -362,16 +447,16 @@
               <input id="hdl" type="number" min="0" step="0.1" placeholder="" />
             </div>
             <div>
-  <label id="a1cLabel">HbA1c</label>
-  <div class="row">
-    <input id="a1c" type="number" min="0" step="0.1" placeholder="" />
-    <select id="a1cUnit" aria-label="HbA1c units">
-      <option value="percent">%</option>
-      <option value="ifcc">mmol/mol</option>
-    </select>
-  </div>
-  <div class="hint">Enter value only; select units at right.</div>
-</div>
+              <label id="a1cLabel">HbA1c</label>
+              <div class="row">
+                <input id="a1c" type="number" min="0" step="0.1" placeholder="" />
+                <select id="a1cUnit" aria-label="HbA1c units">
+                  <option value="percent">%</option>
+                  <option value="ifcc">mmol/mol</option>
+                </select>
+              </div>
+              <div class="hint">Enter value only; select units at right.</div>
+            </div>
           </div>
 
           <div style="height:12px"></div>
@@ -447,7 +532,6 @@
                   <div class="hint">Conversions are handled automatically based on unit mode.</div>
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -540,7 +624,26 @@
 
           <div style="height:12px"></div>
 
-          
+          <div class="card">
+            <div class="stepTitle">
+              <div>
+                <h3>OGTT glucose and insulin curves</h3>
+                <p>Overlapping plot across 0, 30, 60, 90, and 120 minutes</p>
+              </div>
+            </div>
+            <div class="chartWrap">
+              <div class="chartMeta">
+                <div class="chartLegend">
+                  <span class="legendItem"><span class="legendSwatch"></span> Glucose</span>
+                  <span class="legendItem"><span class="legendSwatch dashed"></span> Insulin</span>
+                </div>
+                <div class="small" id="chartUnits">—</div>
+              </div>
+              <svg id="ogttChart" class="ogttSvg" viewBox="0 0 700 320" role="img" aria-label="Overlapping OGTT glucose and insulin curves"></svg>
+              <div class="chartEmpty" id="ogttChartEmpty">Enter at least 2 glucose values and 2 insulin values to draw the overlapping graph.</div>
+            </div>
+          </div>
+
           <details class="card ptCard" id="ptDetails">
             <summary>Optional patient identifiers (for print/copy only)</summary>
             <div class="hr"></div>
@@ -575,7 +678,7 @@
             </div>
           </details>
 
-<div class="card">
+          <div class="card">
             <div class="stepTitle">
               <div>
                 <h3>Clinical summary</h3>
@@ -594,8 +697,6 @@
     <footer class="site-footer footer">
       <div class="footerNote">Designed by <strong>Katafan Achkar, MD, FASN</strong>. Development assistance: ChatGPT (OpenAI).</div>
     </footer>
-
-
 
     <div class="toast" id="toast">Copied.</div>
   </div>
